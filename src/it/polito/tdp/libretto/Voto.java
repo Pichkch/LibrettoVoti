@@ -39,5 +39,7 @@ public class Voto {
 		this.data = data;
 	}
 	
-	
+	public String toString() {
+		return String.format(corso, null);
+	}
 }
