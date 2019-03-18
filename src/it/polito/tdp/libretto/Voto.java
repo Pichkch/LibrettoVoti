@@ -3,24 +3,24 @@ package it.polito.tdp.libretto;
 import java.time.LocalDate;
 
 public class Voto {
-	private int voto;
+	private int punti;
 	private String corso;
 	private LocalDate data;
 	
 	public Voto(int voto, String corso, LocalDate data) {
 		super();
-		this.voto = voto;
+		this.punti = voto;
 		this.corso = corso;
 		this.data = data;
 		
 	}
 
-	public int getVoto() {
-		return voto;
+	public int getPunti() {
+		return punti;
 	}
 
 	public void setVoto(int voto) {
-		this.voto = voto;
+		this.punti = voto;
 	}
 
 	public String getCorso() {
@@ -40,6 +40,8 @@ public class Voto {
 	}
 	
 	public String toString() {
-		return String.format(corso, null);
+		return String.format(null, corso, null);
 	}
+
+
 }
