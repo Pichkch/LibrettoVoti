@@ -53,5 +53,22 @@ public class Libretto {
 		
 		return null;
 	}
-	
+	/**
+	 * Dato un {@link Voto}, determina se esiste già un voto con uguale
+	 * corso ed uguale punteggio.
+	 * 
+	 * @param v
+	 * @return {@code true}, se ha trovato un corso e punteggio uguali, 
+	 * {@code false} se ha trovato il corso, oppure l'ha trovato con voto diverso.
+	 */
+	public boolean esisteGiaVoto(Voto v) {
+		Voto trovato=this.cercaEsame(v.getCorso());
+		if(trovato==null)
+			return false;
+		if(trovato.getPunti()==v.getPunti()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
