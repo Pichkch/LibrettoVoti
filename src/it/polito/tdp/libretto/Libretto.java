@@ -23,8 +23,7 @@ public class Libretto {
 			voti.add(v);
 			return true;
 		}else {
-			return false;
-			
+			return false;	
 		}
 		
 	}
@@ -77,9 +76,11 @@ public class Libretto {
 	}
 	/**
 	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti esistenti.
-	 * Se il voto non esiste
+	 * Se il voto non esiste, non c'è conflitto.Se esiste ed ha un punteggio diverso, c'è conflitto.
+	 * 
 	 * @param v
-	 * @return
+	 * @return {@code true} se il voto esiste ed ha un punteggio diverso.
+	 * @return {@code false} se il voto non esiste, oppure se esiste ma ha lo stesso punteggio.
 	 */
 	public boolean votoConflitto(Voto v) {
 		int pos=this.voti.indexOf(v);
@@ -91,6 +92,32 @@ public class Libretto {
 	
 	public String toString() {
 		return this.voti.toString();
+	}
+	
+	public Libretto librettoMigliorato() {
+		Libretto nuovo = new Libretto();
+		for (Voto v: this.voti) {
+			nuovo.add(v.clone());
+		}
+		for (Voto v: nuovo.voti) {
+			int punti=v.getPunti();
+			if (punti<24)
+				punti= punti + 1;
+			else if(punti<=28)
+				punti= punti + 2;
+			v.setPunti(punti);
+		}
+		return nuovo;
+	}
+	
+	public void cancellaVotiScarsi() {
+		List<Voto> cancellare=new ArrayList<Voto>();
+		for(Voto v: this.voti) {
+			if(v.getPunti()<24) {
+				cancellare.add(v);
+			}
+		}
+		this.voti.removeAll(cancellare);
 	}
 	
 }

@@ -71,5 +71,11 @@ public class Voto {
 		return true;
 	}
 
+	public void setPunti(int punti) {
+		this.punti = punti;
+	}
 	
+	public Voto clone() {
+		return new Voto(this.punti,this.corso, this.data);
+	}
 }
