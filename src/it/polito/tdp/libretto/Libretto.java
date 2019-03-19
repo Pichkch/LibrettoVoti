@@ -15,10 +15,18 @@ public class Libretto {
 	 * Aggiumge un nuovo voto al libretto.
 	 * 
 	 * @param v il (@link Voto) da aggiungere
+	 * @return {@code true} nel caso normale, {@code false} se non è riuscito ad aggiungere il voto.
 	 */
 	
-	public void add (Voto v) {
-		voti.add(v);
+	public boolean add (Voto v) {
+		if(!this.esisteGiaVoto(v) && !this.votoConflitto(v)) {
+			voti.add(v);
+			return true;
+		}else {
+			return false;
+			
+		}
+		
 	}
 	/**
 	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
@@ -65,9 +73,24 @@ public class Libretto {
 		if(pos==-1)
 			return false;
 		else
-			if(v.getPunti()== this.voti.get(pos).getPunti())
-				return true;
-			else 
-				return false;
+				return (v.getPunti()== this.voti.get(pos).getPunti());
 	}
+	/**
+	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti esistenti.
+	 * Se il voto non esiste
+	 * @param v
+	 * @return
+	 */
+	public boolean votoConflitto(Voto v) {
+		int pos=this.voti.indexOf(v);
+		if(pos == -1)
+			return false;
+		else
+				return (v.getPunti()!= this.voti.get(pos).getPunti());
+	}
+	
+	public String toString() {
+		return this.voti.toString();
+	}
+	
 }
